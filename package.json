@@ -1,0 +1,48 @@
+{
+  "private": false,
+  "type": "module",
+  "name": "station-recorder",
+  "version": "1.0.0",
+  "author": "44xtc44@gmail.com",
+  "license": "GPL-3.0-only",
+  "bugs": {
+    "url": "https://github.com/44xtc44/station-recorder"
+  },
+  "description": "The radio, audio, stream recorder. Blacklist feature.",
+  "keywords": [
+    "downloader",
+    "radio tv database"
+  ],
+  "main": "./index.js",
+  "engines": {
+    "node": ">=16"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/44xtc44/station-recorder.git"
+  },
+  "scripts": {
+    "test": "node --experimental-vm-modules node_modules/.bin/jest"
+  },
+  "jest": {
+    "verbose": true,
+    "automock": false,
+    "setupFiles": [
+      "jsdom-worker"
+    ],
+    "testEnvironment": "jsdom"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.57.0",
+    "@types/node": "^24.3.0",
+    "jest": "^30.0.5",
+    "jest-environment-jsdom": "^30.2.0",
+    "jsdom-worker": "^0.3.0",
+    "playwright": "^1.57.0",
+    "playwright-webextext": "^0.0.4",
+    "tslib": "^2.8.1",
+    "typescript": "^5.9.3",
+    "web-ext": "^8.10.0"
+  },
+  "bin": {}
+}
