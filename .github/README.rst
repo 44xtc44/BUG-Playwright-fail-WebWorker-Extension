@@ -37,9 +37,9 @@ Steps to reproduce
 (A) Test "single" browser extension. manifest.json must be adapted. See (C)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     import { chromium } from "playwright"; or import { chromium } from "playwright/test";
-| or also tested:
+    or also tested:
     import { firefox } from "playwright"; or import { firefox } from "playwright/test";
-| 
+ 
 (B) Extension App.
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 |   Have a web application extension/add-on with a few web workers that performs any actions.
@@ -48,10 +48,10 @@ Steps to reproduce
 | 
 |   Or see the repo I have created - https://github.com/44xtc44/BUG-Playwright-fail-WebWorker-Extension.git
 |   "npm install" in the package root folder then.
-| 
+
 (C) Extension manifest.json Version 3
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Since Browser brands use different manifest syntax, copy from /tests/manifest/<brand>.
+| Since Browser brands use different manifest syntax, copy from /tests/manifest/<brand>.
 | 
 | Playwright FireFox (Nightly) test run shows the same error as Chromium. 
 | To exclude the started Browser instance from failure start 
