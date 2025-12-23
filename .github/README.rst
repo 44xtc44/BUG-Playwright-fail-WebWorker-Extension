@@ -34,13 +34,8 @@ Context:
 
 Steps to reproduce
 -------------------
-(A) Test "single" browser extension. manifest.json must be adapted. See (C)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    import { chromium } from "playwright"; or import { chromium } from "playwright/test";
-    or also tested:
-    import { firefox } from "playwright"; or import { firefox } from "playwright/test";
- 
-(B) Extension App.
+
+(A) Extension App.
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 |   Have a web application extension/add-on with a few web workers that performs any actions.
 |   Configure "postMessage", "onmessage", "onerror".
@@ -49,7 +44,7 @@ Steps to reproduce
 |   Or see the repo I have created - https://github.com/44xtc44/BUG-Playwright-fail-WebWorker-Extension.git
 |   "npm install" in the package root folder then.
 
-(C) Extension manifest.json Version 3
+(B) Extension manifest.json Version 3
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 | Since Browser brands use different manifest syntax, copy from /tests/manifest/<brand>.
 | 
@@ -58,7 +53,19 @@ Steps to reproduce
 | firefox module via test module and keep the browser instance open. 
 | "about:debugging" add temporary Add-on, locate -> bug report repo root folder manifest.json. Fire.
 | Browser instance works fine, WebWorker instance responds accordingly.
-| 
+
+(C) Test "single" browser extension. manifest.json must be adapted. See (C)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+| import { chromium } from "playwright"; or import { chromium } from "playwright/test";
+| or also tested:
+| import { firefox } from "playwright"; or import { firefox } from "playwright/test";
+
+.. code-block::
+   :caption: run in terminial /tests/end2end/
+
+    > npx run-func chromium.js homePageOpen -y
+
+
 | Expected behavior
 | I would expect to see a web worker message.
 | 
