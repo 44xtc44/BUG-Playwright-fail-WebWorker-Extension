@@ -6,6 +6,8 @@ Playwright fails to run a WebWorker in a Chromium/FireFox "extension".
             :class: with-border
             :width: 50
 
+Issue https://github.com/microsoft/playwright/issues/38638
+
 Context:
 ---------
 | I can not test my project with Playwright. This guy is not finishing loading at all.
