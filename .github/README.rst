@@ -59,9 +59,9 @@ Steps to reproduce
 | import { chromium } from "playwright"; or import { chromium } from "playwright/test";
 | or also tested:
 | import { firefox } from "playwright"; or import { firefox } from "playwright/test";
-
+|
+| run in terminial /tests/end2end/
 .. code-block::
-   :caption: run in terminial /tests/end2end/
 
     > npx run-func chromium.js homePageOpen -y
 
