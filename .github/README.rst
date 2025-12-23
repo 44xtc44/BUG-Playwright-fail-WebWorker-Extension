@@ -4,70 +4,70 @@ Playwright fails to run a WebWorker in a Chromium/FireFox "extension".
 .. image:: ./default_icon.svg
             :alt: default_icon
             :class: with-border
-            :width: 100
+            :width: 50
 
 Context:
 ---------
-I can not test my project with Playwright. This guy is not finishing loading at all.
+| I can not test my project with Playwright. This guy is not finishing loading at all.
 
-My current Browser extension/add-on "pre_worker_central_msg_log" branch of 
-"https://github.com/44xtc44/station-recorder.git".
+| My current Browser extension/add-on "pre_worker_central_msg_log" branch of 
+| "https://github.com/44xtc44/station-recorder.git".
 
-Browser stuck on loading indexedDB via WebWorker to free the main thread for animations.
-Animation is also not shown by the way. Seem the failure blocks all long running former executions.
-An empty error object is shown in Dev Tools console.
+| Browser stuck on loading indexedDB via WebWorker to free the main thread for animations.
+| Animation is also not shown by the way. Seem the failure blocks all long running former executions.
+| An empty error object is shown in Dev Tools console.
 
-Hint: Fixed issue WebWorker non-extensions https://github.com/microsoft/playwright/issues/4487
+| Hint: Fixed issue WebWorker non-extensions https://github.com/microsoft/playwright/issues/4487
 
-Playwright Version: 1.57.0
-Operating System: Linux
-Node.js version: 24.12.0; ES modules used
-Browser: Chromium
-manifest.json Version: 3
-System:
-  Linux: 6.8.0-58-generic
-  Memory: 32.00 GB
+| Playwright Version: 1.57.0
+| Operating System: Linux
+| Node.js version: 24.12.0; ES modules used
+| Browser: Chromium
+| manifest.json Version: 3
+| System:
+|   Linux: 6.8.0-58-generic
+|   Memory: 32.00 GB
   
-I have created a minimal example to reproduce the issue. You can find it here:
+| I have created a minimal example to reproduce the issue. You can find it here:
 
-https://github.com/44xtc44/BUG-Playwright-fail-WebWorker-Extension.git
+| https://github.com/44xtc44/BUG-Playwright-fail-WebWorker-Extension.git
 
 
-Steps to reproduce
--------------------
-(A) Test "single" browser extension. manifest.json must be adapted. See (C)
-  import { chromium } from "playwright"; or import { chromium } from "playwright/test";
-  or also tested:
-  import { firefox } from "playwright"; or import { firefox } from "playwright/test";
+| Steps to reproduce
+| -------------------
+| (A) Test "single" browser extension. manifest.json must be adapted. See (C)
+|   import { chromium } from "playwright"; or import { chromium } from "playwright/test";
+|   or also tested:
+|   import { firefox } from "playwright"; or import { firefox } from "playwright/test";
 
-(B) Extension App.
-  Have a web application extension/add-on with a few web workers that performs any actions.
-  Configure "postMessage", "onmessage", "onerror".
-  The WebWorker instance don't receive a message, only an empty error object. 
+| (B) Extension App.
+|   Have a web application extension/add-on with a few web workers that performs any actions.
+|   Configure "postMessage", "onmessage", "onerror".
+|   The WebWorker instance don't receive a message, only an empty error object. 
 
-  Or see the repo I have created - https://github.com/44xtc44/BUG-Playwright-fail-WebWorker-Extension.git
-  "npm install" in the package root folder then.
+|   Or see the repo I have created - https://github.com/44xtc44/BUG-Playwright-fail-WebWorker-Extension.git
+|   "npm install" in the package root folder then.
+| 
+| (C) Extension manifest.json Version 3
+|   Since Browser brands use different manifest syntax, copy from /tests/manifest/<brand>.
 
-(C) Extension manifest.json Version 3
-  Since Browser brands use different manifest syntax, copy from /tests/manifest/<brand>.
+| Playwright FireFox (Nightly) test run shows the same error as Chromium. 
+| To exclude the started Browser instance from failure start 
+| firefox module via test module and keep the browser instance open. 
+| "about:debugging" add temporary Add-on, locate -> bug report repo root folder manifest.json. Fire.
+| Browser instance works fine, WebWorker instance responds accordingly.
 
-Playwright FireFox (Nightly) test run shows the same error as Chromium. 
-To exclude the started Browser instance from failure start 
-firefox module via test module and keep the browser instance open. 
-"about:debugging" add temporary Add-on, locate -> bug report repo root folder manifest.json. Fire.
-Browser instance works fine, WebWorker instance responds accordingly.
+| Expected behavior
+| I would expect to see a web worker message.
 
-Expected behavior
-I would expect to see a web worker message.
+| Actual behavior
+| I can not see web worker message. Only an empty error object.
 
-Actual behavior
-I can not see web worker message. Only an empty error object.
+| Additional context
+| none
 
-Additional context
-none
-
-Environment
-Linux, Browser Tests
+| Environment
+| Linux, Browser Tests
 
 
 
