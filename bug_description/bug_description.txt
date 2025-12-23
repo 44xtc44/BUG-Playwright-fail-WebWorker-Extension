@@ -32,7 +32,7 @@ https://github.com/44xtc44/BUG-Playwright-fail-WebWorker-Extension.git
 
 Steps to reproduce
 -------------------
-(A) Test browser extension.
+(A) Test "single" browser extension. manifest.json must be adapted. See (C)
   import { chromium } from "playwright"; or import { chromium } from "playwright/test";
   or also tested:
   import { firefox } from "playwright"; or import { firefox } from "playwright/test";
